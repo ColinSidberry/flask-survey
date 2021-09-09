@@ -10,7 +10,6 @@ debug = DebugToolbarExtension(app)
 
 responses = []
 
-
 @app.get("/")
 def render_survey():
     survey_title = survey.title
@@ -18,6 +17,14 @@ def render_survey():
     return render_template("survey_start.html", 
                             survey_title = survey_title, 
                             survey_instructions = survey_instructions)
+
+@app.get("/questions/<int:ques_num>")
+def ask_questions(ques_num):
+    survey_question= survey.questions[ques_num]
+    question_choices= survey_question.choices
+    return render_template("question.html", 
+                            choice = question_choices,
+                            question = survey_question)
 
 @app.post("/begin")
 def go_to_questions():

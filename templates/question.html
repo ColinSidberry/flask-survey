@@ -6,13 +6,17 @@
   <form action="/answer" method="POST">
 
       <!-- you should have one item like this for every choice -->
-      <p>
-        <input
-            type="radio"
-            name="answer"
-            value="value-goes-here">
-        choice-goes-here
-      </p>
+      {% for choice in choices %}
+        {% if not choice %}
+        <p>
+          <input
+              type="radio"
+              name="answer"
+              value="value-goes-here">
+          choice-goes-here
+        </p>
+        {% endif %}
+      {% endfor %}
 
     <button>Continue</button>
   </form>
